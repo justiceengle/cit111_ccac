@@ -25,7 +25,7 @@ public class Main {
         numberGuesser.greeting();
         
         System.out.println("");
-        
+                
         numberGuesser.numberLogic();
     }
 }

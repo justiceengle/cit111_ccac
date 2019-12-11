@@ -13,7 +13,7 @@ public class NumberGuesser {
     public NumberGuesser(int number) {
         upperBound = number;
         lowerBound = 1;
-        numberOfGuesses = (int) (Math.log(number) / Math.log(2));
+        numberOfGuesses = (int) ((Math.log(number) / Math.log(2)) + 1);
         reader = new Scanner(System.in);
     }
     
@@ -26,33 +26,38 @@ public class NumberGuesser {
     }
     
     public void numberLogic() {
-        int answer;
+        int response;
         while(true) {
             if(upperBound == lowerBound) {
                 break;
             }
             
             average = (upperBound + lowerBound) / 2;
+            
             System.out.println("Is your number greater than " + average + "?");
             System.out.println("Type 1 for 'yes', 2 for 'no'.");
-            answer = reader.nextInt();
+            response = reader.nextInt();
             
-            answer(answer);
+            answerLogic(response);
             System.out.println("");
         }
         
         System.out.println("Your number is " + upperBound + ".");
+        
     }
     
-    public void answer(int answer) {
+    public void answerLogic(int answer) {
         int response = answer;
+        String invalidResponse = "INVALID RESPONSE - PLEASE ENTER EITHER 1"
+                + " FOR 'YES' OR 2 FOR 'NO'";
         
         if(response == 1) {
             lowerBound = average + 1;
         } else if(answer == 2) {
             upperBound = average;
         } else {
-            System.out.println("Invalid response. Please respond with either 1 for 'yes' or 2 for 'no'.");
+            System.out.println("");
+            System.out.println(invalidResponse);
         }
     }
 }
